@@ -2,6 +2,7 @@
   "name": "get-datetime",
   "displayName": "Get Current Date and Time",
   "description": "Provides GitHub Copilot with real-time date and time context.",
+  "icon": "icon.png",
   "version": "0.2.1",
   "publisher": "chrsptn",
   "repository": {
