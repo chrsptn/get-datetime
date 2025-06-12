@@ -1,0 +1,111 @@
+{
+  "name": "get-datetime",
+  "displayName": "Get Current Date and Time",
+  "description": "Provides GitHub Copilot with real-time date and time context.",
+  "version": "0.2.1",
+  "publisher": "chrsptn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrsptn/get-datetime.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "copilot",
+    "datetime",
+    "time",
+    "date",
+    "context",
+    "tool",
+    "timezone",
+    "language-model-tools"
+  ],
+  "tags": [
+    "language-model-tools"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguageModelTool:get-datetime"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "prepublish": "npm run build",
+    "package": "npx vsce package",
+    "publish": "npx vsce publish"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Get DateTime",
+      "properties": {
+        "getDateTime.defaultTimezone": {
+          "type": "string",
+          "default": "",
+          "description": "Default timezone to use (e.g., 'America/New_York', 'Europe/London', 'Australia/Sydney'). Leave empty to use system timezone.",
+          "examples": [
+            "America/New_York",
+            "Europe/London",
+            "Australia/Sydney",
+            "Asia/Tokyo",
+            "UTC"
+          ]
+        },
+        "getDateTime.defaultLocale": {
+          "type": "string",
+          "default": "",
+          "description": "Default locale for date/time formatting (e.g., 'en-US', 'en-GB', 'fr-FR'). Leave empty to use system locale.",
+          "examples": [
+            "en-US",
+            "en-GB",
+            "fr-FR",
+            "de-DE",
+            "ja-JP",
+            "zh-CN"
+          ]
+        }
+      }
+    },
+    "languageModelTools": [
+      {
+        "name": "get-datetime",
+        "displayName": "Get Current Date and Time",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "get-datetime",
+        "userDescription": "Get the current date and time in various formats. This tool can be used to retrieve the current date and time, formatted as needed, including support for different timezones and formats such as ISO, local, UTC, timestamps, and relative times.",
+        "modelDescription": "This tool retrieves the current real-time date and time from the system clock. It returns formatted datetime information including the current timestamp, formatted date/time string, timezone information, and the requested format type. Use this tool when you need accurate, up-to-date temporal information for tasks like scheduling, logging, time-sensitive calculations, or when users ask about the current time/date. The tool supports multiple output formats (ISO 8601, local time, UTC, Unix timestamp, relative time) and can handle timezone conversions. DO NOT use this tool for historical dates, date arithmetic, or parsing existing date strings - it only provides the current moment in time. The tool depends on the system clock accuracy and timezone settings of the host machine. Relative time format shows 'just now' since it compares the current time to itself.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "The format for the date/time output",
+              "enum": [
+                "iso",
+                "local",
+                "utc",
+                "timestamp",
+                "relative"
+              ]
+            },
+            "timezone": {
+              "type": "string",
+              "description": "Optional timezone (e.g., 'America/New_York', 'Europe/London')"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.5.0",
+    "esbuild": "^0.14.0",
+    "typescript": "^4.4.0"
+  }
+}
