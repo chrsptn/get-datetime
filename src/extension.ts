@@ -165,14 +165,14 @@ class GetDateTimeTool implements vscode.LanguageModelTool<DateTimeToolInput> {
 
 export function activate(context: vscode.ExtensionContext) {
   // Show activation message
-  vscode.window.showInformationMessage("Get DateTime extension is now active! 🕐");
+  // vscode.window.showInformationMessage("Get DateTime extension is now active! 🕐");
 
   // Register the datetime tool
   const datetimeTool = vscode.lm.registerTool("get-datetime", new GetDateTimeTool());
   context.subscriptions.push(datetimeTool);
 
   // Confirm tool registration
-  console.log("✅ get-datetime tool registered successfully");
+  //console.log("✅ get-datetime tool registered successfully");
 }
 
 export function deactivate() {}
