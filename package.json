@@ -3,7 +3,7 @@
   "displayName": "Get Current Date and Time",
   "description": "Provides GitHub Copilot with real-time date and time context.",
   "icon": "icon.png",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publisher": "chrsptn",
   "repository": {
     "type": "git",
@@ -38,7 +38,8 @@
     "watch": "node esbuild.js --watch",
     "prepublish": "npm run build",
     "package": "npx vsce package",
-    "publish": "npx vsce publish"
+    "publish": "npx vsce publish",
+    "release": "npm run build && npm run package"
   },
   "contributes": {
     "configuration": {
